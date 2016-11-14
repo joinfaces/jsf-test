@@ -1,0 +1,37 @@
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        jcenter()
+        maven { url 'http://repo.spring.io/plugins-release' }
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+apply plugin: 'application'
+apply plugin: 'idea'
+
+mainClassName = "com.example.SimpleApp"
+
+repositories {
+    mavenCentral()
+    maven { url 'http://repository.primefaces.org' }
+    jcenter()
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-jetty",
+            "org.springframework.boot:spring-boot-starter-web",
+            "org.joinfaces:jsf-jetty-spring-boot-starter:2.2.9"
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+configurations {
+    compile.exclude module: "spring-boot-starter-tomcat"
+}
